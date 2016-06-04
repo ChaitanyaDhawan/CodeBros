@@ -1,4 +1,5 @@
-local M = {}
+ 
+	local M = {}
 
 local function centroid(mat)
 	local k = torch.Tensor(mat:size(1),mat:size(2))
@@ -20,7 +21,7 @@ local function centroid(mat)
 	--(image.crop(mat,X-min,Y-min,X+min-1,Y+min-1))
 end
 
-function M.f(img)
+function M.wbg(img)
 			require 'image'
 			local i =image.load(img,1,'double')
 			i = image.scale(i,20,20,simple)
@@ -39,15 +40,23 @@ function M.f(img)
 			end			
 			return model1:forward(t)
 		end
---[[function M.g(img)
-	local i=image.load(img,1,'double')
-	i = image.scale(i,28,28,simple)
-	i = 255 * i
-	i = 255 - i
-	return i
-end]]	
-	
-
+function M.bbg(img)
+			require 'image'
+			local i =image.load(img,1,'double')
+			i = image.scale(i,20,20,simple)
+			i = 255 * i
+			X,Y = centroid(i)
+			local c=1
+			s = i:storage()
+			x = 15 -X
+			y = 15-Y
+			t = torch.Tensor(28,28):fill(0)
+			for p=x,x+19 do
+				for q=y,y+19 do
+					t[p][q] = s[c]
+					c = c+1
+				end
+			end			
+			return model1:forward(t)
+		end
 return M
-		
-		
