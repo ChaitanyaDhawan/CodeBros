@@ -1,4 +1,4 @@
 # CodeBros
-Project to classify digits using machine learning
+Project to recognize digits using machine learning
 
 
