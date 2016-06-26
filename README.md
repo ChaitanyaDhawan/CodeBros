@@ -1,4 +1,4 @@
 # CodeBros
-Project to recognize digits using machine learning
+Project to recognise Alpha-numeric characters using machine learning
 
 
