@@ -11,8 +11,8 @@ testset = mnist.testdataset()
 trainset = {
     size = 50000,
     data = fullset.data[{{1,50000}}]:double(),
-    label = fullset.label[{{1,50000}}]
-}
+    label = fullset.label[{{1,50000}}]}
+
 
 validationset = {
     size = 10000,
